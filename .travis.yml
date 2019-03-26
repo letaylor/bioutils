@@ -1,10 +1,10 @@
 language: r
 sudo: false
 cache: packages
+
 before_install:
   - R -e 'install.packages("remotes")'
   - R -e 'remotes::install_deps(dependencies = TRUE)'
-install:
   - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
       wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh;
     else
@@ -21,5 +21,23 @@ install:
   - conda install conda-build
   - conda install anaconda-client
   - conda install conda-verify
+
+install:
+  - conda build conda
+  - conda install --use-local $PACKAGENAME
+
+# Run test
+# script:
+#   - nosetests tests
+
+# Change permissions for Anaconda deployment script
 after_success:
-  - test $TRAVIS_BRANCH = "master" && bash conda/conda_upload.sh
+  - chmod +x ./conda/deploy_anaconda.sh
+
+ # Deploy to Anaconda.org
+deploy:
+  - provider: script
+    script: ./conda/deploy_anaconda.sh
+    on:
+      tags: true
+    skip_cleanup: true
