@@ -1,10 +1,12 @@
 {% set name = "bioutils" %}
+{% set version = "0.1.1" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
 package:
   name: 'r-{{ name|lower }}'
-  version: '{{ environ['VERSION'] }}'
+  version: '{{ version }}'
+  #version: '{{ environ['VERSION'] }}'
 
 source:
   path: '../'
@@ -12,8 +14,8 @@ source:
   #git_tag: 'master'
 
 build:
-  script_env:
-    - VERSION
+  # script_env:
+  #   - VERSION
   merge_build_host: True # [win]
   number: 0 # if new build for the same version, increment the build number.
   rpaths:

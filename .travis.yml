@@ -2,6 +2,7 @@ language: r
 sudo: false
 cache: packages
 
+# Install the required R packages and conda dependencies
 before_install:
   - R -e 'install.packages("remotes")'
   - R -e 'remotes::install_deps(dependencies = TRUE)'
@@ -22,6 +23,7 @@ before_install:
   - conda install anaconda-client
   - conda install conda-verify
 
+# Build the conda package
 install:
   - conda build conda
   - conda install --use-local $PACKAGENAME
