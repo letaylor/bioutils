@@ -26,7 +26,7 @@ before_install:
 # Build the conda package
 install:
   - conda build conda
-  - conda install --use-local $PACKAGENAME
+  - conda install --use-local r-bioutils
 
 # Run test
 # script:

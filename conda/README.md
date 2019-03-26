@@ -1,6 +1,6 @@
 # Automatic Uploads to Anaconda from Travis CI
 
-This workflow is derived from [here](https://gist.github.com/zshaheen/fe76d1507839ed6fbfbccef6b9c13ed9).
+This workflow is derived from [here](https://gist.github.com/zshaheen/fe76d1507839ed6fbfbccef6b9c13ed9) and [here](https://gist.github.com/yoavram/05a3c04ddcf317a517d5).
 
 ## 1. Edit config files
 
@@ -20,3 +20,10 @@ The token `conda_upload.sh::$CONDA_UPLOAD_TOKEN` is used to authenticate the `an
 6. Login to your account on [travis-ci.org](https://travis-ci.org) and go to the repository that you want to add this automatic functionality to.
 7. On the right next to 'More options' go to 'Settings' in the hamburger menu.
 8. Add an environment variable with the name `CONDA_UPLOAD_TOKEN` and give it the value of the API token that you copied from [anaconda.org](https://anaconda.org).
+
+Or from the command line:
+
+```bash
+anaconda login
+anaconda auth -c -n travis --max-age 307584000 --url https://anaconda.org/${CONDA_USER_NAME}/${PKG_NAME} --scopes "api:write api:read"
+```

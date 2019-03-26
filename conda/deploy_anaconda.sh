@@ -7,7 +7,7 @@ set -e
 # >>> anaconda login
 # >>> anaconda auth -c -n travis --max-age 307584000 --url https://anaconda.org/USERNAME/PACKAGENAME --scopes "api:write api:read"
 
-USER="letaylor" # for anaconda upload
+CONDA_USER_NAME="letaylor" # for anaconda upload
 PKG_NAME="bioutils" # for conda build .
 
 # echo "Converting conda package..."
@@ -15,8 +15,8 @@ PKG_NAME="bioutils" # for conda build .
 
 echo "Deploying to Anaconda.org..."
 anaconda --token ${CONDA_UPLOAD_TOKEN} upload \
-    ${HOME}/miniconda/conda-bld/**/${PKG_NAME}-*.tar.bz2 \
-    --user ${USER} \
+    ${HOME}/miniconda/conda-bld/*/*${PKG_NAME}-*.tar.bz2 \
+    --user ${CONDA_USER_NAME} \
     --label "main" \
     --force
     #--all
