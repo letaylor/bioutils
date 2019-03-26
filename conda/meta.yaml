@@ -6,7 +6,6 @@
 package:
   name: 'r-{{ name|lower }}'
   version: '{{ version }}'
-  #version: '{{ environ['VERSION'] }}'
 
 source:
   path: '../'
@@ -14,8 +13,6 @@ source:
   #git_tag: 'master'
 
 build:
-  # script_env:
-  #   - VERSION
   merge_build_host: True # [win]
   number: 0 # if new build for the same version, increment the build number.
   rpaths:

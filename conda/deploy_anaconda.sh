@@ -1,13 +1,13 @@
 #!/bin/bash
 #===============================================================================
 #title        :deploy_anaconda.sh
-#description  :
+#description  :Automatic Uploads to Anaconda from Travis CI
 #author       :Leland Taylor
 #date         :26/03/2019
 #version      :0.1
 #usage        :sh deploy_anaconda.sh PKG_NAME
 #input        :PKG_NAME (required)
-#               - package name to deploy
+#               - path of package to deploy
 #output       :NULL
 #notes        :CONDA_USER_NAME is stored securely in on Travis CI.
 #              CONDA_UPLOAD_TOKEN is stored securely in on Travis CI.
