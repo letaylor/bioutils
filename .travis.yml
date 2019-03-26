@@ -36,7 +36,7 @@ install:
 after_success:
   - chmod +x ./conda/deploy_anaconda.sh
 
- # Deploy to Anaconda.org
+# Deploy to Anaconda.org
 deploy:
   - provider: script
     script: ./conda/deploy_anaconda.sh
