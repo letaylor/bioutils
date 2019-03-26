@@ -11,7 +11,7 @@ PKG_NAME="bioutils" # for conda build .
 
 echo "Deploying to Anaconda.org..."
 anaconda --token ${CONDA_UPLOAD_TOKEN} upload \
-    "${HOME}/miniconda-foo/conda-bld/*/*${PKG_NAME}-*.tar.bz2" \
+    "${HOME}/miniconda/conda-bld/*/*${PKG_NAME}-*.tar.bz2" \
     --user ${CONDA_USER_NAME} \
     --label "main" \
     --force
