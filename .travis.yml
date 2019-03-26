@@ -31,7 +31,7 @@ before_install:
 install:
   - conda build conda
   - export CONDA_OUT_FILE=$(conda build conda --output)
-  - echo ${CONDA_OUT_FILE}
+  - echo "CONDA_OUT_FILE=${CONDA_OUT_FILE}"
   - conda install --use-local r-${PKG_NAME}
 
 # Run test
