@@ -16,7 +16,6 @@
 set -e
 
 PKG_NAME=${1-"ERROR"} # for conda build .
-CONDA_USER_NAME="letaylor" # for anaconda upload
 
 # echo "Converting conda package..."
 # conda convert --platform all $HOME/miniconda2/conda-bld/linux-64/PACKAGENAME-*.tar.bz2 --output-dir conda-bld/

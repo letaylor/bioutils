@@ -4,7 +4,6 @@ cache: packages
 
 env:
   global:
-    - CAMPFIRE_TOKEN=abc123
     - PKG_NAME=bioutils
 
 # Install the required R packages and conda dependencies
