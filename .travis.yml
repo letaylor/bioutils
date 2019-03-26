@@ -2,17 +2,22 @@ language: r
 sudo: false
 cache: packages
 
+env:
+  global:
+    - CAMPFIRE_TOKEN=abc123
+    - PKG_NAME=bioutils
+
 # Install the required R packages and conda dependencies
 before_install:
   - R -e 'install.packages("remotes")'
   - R -e 'remotes::install_deps(dependencies = TRUE)'
-  - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
+  - if [[ "${TRAVIS_PYTHON_VERSION}" == "2.7" ]]; then
       wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh;
     else
       wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
     fi
-  - bash miniconda.sh -b -p $HOME/miniconda
-  - export PATH="$HOME/miniconda/bin:$PATH"
+  - bash miniconda.sh -b -p ${HOME}/miniconda
+  - export PATH="${HOME}/miniconda/bin:${PATH}"
   - hash -r
   - conda config --set always_yes yes --set changeps1 no
   - conda update -q conda
@@ -25,8 +30,9 @@ before_install:
 
 # Build the conda package
 install:
-  - export CONDA_BLD_PATH="${HOME}/miniconda/conda-bld" && conda build conda
-  - conda install --use-local r-bioutils
+  - export CONDA_OUT_FILE=$(conda build conda --output)
+  - echo ${CONDA_OUT_FILE}
+  - conda install --use-local r-${PKG_NAME}
 
 # Run test
 # script:
@@ -39,7 +45,7 @@ after_success:
 # Deploy to Anaconda.org
 deploy:
   - provider: script
-    script: ./conda/deploy_anaconda.sh
+    script: ./conda/deploy_anaconda.sh ${PKG_NAME}
     on:
       branch: master
     skip_cleanup: true
