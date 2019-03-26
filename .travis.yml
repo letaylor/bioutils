@@ -25,7 +25,7 @@ before_install:
 
 # Build the conda package
 install:
-  - conda build conda
+  - export CONDA_BLD_PATH="${HOME}/miniconda-foo/conda-bld" && conda build conda
   - conda install --use-local r-bioutils
 
 # Run test
@@ -41,5 +41,5 @@ deploy:
   - provider: script
     script: ./conda/deploy_anaconda.sh
     on:
-      tags: true
+      tags: false
     skip_cleanup: true

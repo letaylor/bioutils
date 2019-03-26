@@ -1,12 +1,8 @@
 #!/bin/bash
 set -e
 
-# NOTE:
-# this script uses the CONDA_UPLOAD_TOKEN env var.
-# to create a token:
-# >>> anaconda login
-# >>> anaconda auth -c -n travis --max-age 307584000 --url https://anaconda.org/USERNAME/PACKAGENAME --scopes "api:write api:read"
-
+# NOTE: This script uses the CONDA_UPLOAD_TOKEN env var. Store this token
+# securely in on Travis CI. See README.md
 CONDA_USER_NAME="letaylor" # for anaconda upload
 PKG_NAME="bioutils" # for conda build .
 
@@ -15,7 +11,7 @@ PKG_NAME="bioutils" # for conda build .
 
 echo "Deploying to Anaconda.org..."
 anaconda --token ${CONDA_UPLOAD_TOKEN} upload \
-    ${HOME}/miniconda/conda-bld/*/*${PKG_NAME}-*.tar.bz2 \
+    "${HOME}/miniconda-foo/conda-bld/*/*${PKG_NAME}-*.tar.bz2" \
     --user ${CONDA_USER_NAME} \
     --label "main" \
     --force

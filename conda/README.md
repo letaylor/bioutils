@@ -25,5 +25,8 @@ Or from the command line:
 
 ```bash
 anaconda login
-anaconda auth -c -n travis --max-age 307584000 --url https://anaconda.org/${CONDA_USER_NAME}/${PKG_NAME} --scopes "api:write api:read"
+anaconda auth -c -n travis \
+    --max-age 307584000 \
+    --url https://anaconda.org/${CONDA_USER_NAME}/${PKG_NAME} \
+    --scopes "api:write api:read"
 ```
