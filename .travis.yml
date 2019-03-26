@@ -1,0 +1,25 @@
+language: r
+sudo: false
+cache: packages
+before_install:
+  - R -e 'install.packages("remotes")'
+  - R -e 'remotes::install_deps(dependencies = TRUE)'
+install:
+  - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
+      wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh;
+    else
+      wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+    fi
+  - bash miniconda.sh -b -p $HOME/miniconda
+  - export PATH="$HOME/miniconda/bin:$PATH"
+  - hash -r
+  - conda config --set always_yes yes --set changeps1 no
+  - conda update -q conda
+  - conda config --add channels r
+  - conda config --add channels bioconda
+  - conda config --add channels conda-forge
+  - conda install conda-build
+  - conda install anaconda-client
+  - conda install conda-verify
+after_success:
+  - test $TRAVIS_BRANCH = "master" && bash conda/conda_upload.sh
