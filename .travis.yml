@@ -29,6 +29,7 @@ before_install:
 
 # Build the conda package
 install:
+  - conda build conda
   - export CONDA_OUT_FILE=$(conda build conda --output)
   - echo ${CONDA_OUT_FILE}
   - conda install --use-local r-${PKG_NAME}
@@ -44,7 +45,7 @@ after_success:
 # Deploy to Anaconda.org
 deploy:
   - provider: script
-    script: ./conda/deploy_anaconda.sh ${PKG_NAME}
+    script: ./conda/deploy_anaconda.sh ${CONDA_OUT_FILE}
     on:
       branch: master
     skip_cleanup: true
