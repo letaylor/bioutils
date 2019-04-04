@@ -1,0 +1,31 @@
+---
+title: "bioutils"
+author: "Leland Taylor"
+date: "`r Sys.Date()`"
+output:
+    rmarkdown::html_vignette:
+        df_print: tibble
+    rmarkdown::html_document:
+        df_print: paged
+    rmarkdown::github_document:
+        df_print: kable
+    rmarkdown::pdf_document:
+        df_print: tibble
+vignette: >
+  %\VignetteIndexEntry{bioutils}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+# render to pdf
+# R --slave -e 'rmarkdown::render("bioutils.Rmd", output_format = "rmarkdown::pdf_document")'
+# render to html document specifically formatted for vignette
+# R --slave -e 'rmarkdown::render("bioutils.Rmd", output_format = "rmarkdown::html_vignette")'
+```
+
+Someday this document will show a demo of how to use bioutils.
